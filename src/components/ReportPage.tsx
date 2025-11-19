@@ -249,77 +249,35 @@ export const ReportPage = () => {
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-16 animate-fade-in">
         {/* Hero Section */}
         {isPlaceholder ? (
-          <section className="relative text-center py-20 overflow-hidden">
-            {/* Gradient Arc Background */}
-            <div className="absolute inset-0 flex items-center justify-center -z-10">
-              <div className="w-full max-w-4xl h-96 relative">
-                <svg className="w-full h-full" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M 0 300 Q 200 100 400 150 T 800 200"
-                    stroke="url(#gradient)"
-                    strokeWidth="2"
-                    fill="none"
-                    className="opacity-30"
-                  />
-                  <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#2663EB" />
-                      <stop offset="100%" stopColor="#11D1CB" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-            </div>
-            
-            <div className="relative z-10">
-              <h1 className="text-4xl md:text-5xl font-light text-[#1E293B] mb-6 max-w-3xl mx-auto leading-tight">
-                See your survival arc — before investors do
-              </h1>
-              <p className="text-lg text-[#334155] font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-                Clarity on your startup's future. Insight meets foresight for founders.
-              </p>
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  type="button"
-                  className="bg-gradient-to-r from-[#2663EB] to-[#11D1CB] text-white rounded-xl px-8 py-3 font-light text-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
-                  onClick={handleUploadClick}
-                >
-                  Generate Report
-                </button>
-                <button
-                  type="button"
-                  className="border border-slate-300 bg-white text-[#334155] rounded-xl px-8 py-3 font-light text-sm hover:bg-slate-50 transition-all duration-300"
-                  onClick={handleUploadClick}
-                >
-                  Try Demo
-                </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="application/json"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-              </div>
-              
-              {/* Preview Placeholders */}
-              <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-6">
-                  <div className="text-xs uppercase tracking-wider text-[#334155] font-light mb-3">ArcScore™</div>
-                  <div className="text-3xl font-light text-[#1E293B] mb-2">—</div>
-                  <div className="text-sm text-[#334155] font-light">Structural viability</div>
-                </div>
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-6">
-                  <div className="text-xs uppercase tracking-wider text-[#334155] font-light mb-3">RiskRadar™</div>
-                  <div className="text-3xl font-light text-[#1E293B] mb-2">—</div>
-                  <div className="text-sm text-[#334155] font-light">Risk dimensions</div>
-                </div>
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-6">
-                  <div className="text-xs uppercase tracking-wider text-[#334155] font-light mb-3">MomentumMap™</div>
-                  <div className="text-3xl font-light text-[#1E293B] mb-2">—</div>
-                  <div className="text-sm text-[#334155] font-light">Trajectory trend</div>
-                </div>
-              </div>
+          <section className="max-w-3xl mx-auto text-center py-24 px-6">
+            <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#0E1116] leading-tight">
+              See your survival arc — before investors do
+            </h1>
+            <p className="text-lg text-gray-600 mt-4 leading-relaxed max-w-2xl mx-auto">
+              ArcSight reveals structural instability, architecture risks, and migration blockers — before they cost you traction, users, or funding.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+              <button
+                type="button"
+                className="bg-[#3A7BFF] hover:bg-blue-600 text-white rounded-lg px-6 py-3 font-medium shadow-sm transition w-full sm:w-auto"
+                onClick={handleUploadClick}
+              >
+                Generate Report
+              </button>
+              <button
+                type="button"
+                className="border border-gray-300 text-gray-700 bg-white rounded-lg px-6 py-3 hover:bg-gray-50 transition w-full sm:w-auto"
+                onClick={handleUploadClick}
+              >
+                Try Demo
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/json"
+                onChange={handleFileChange}
+                className="hidden"
+              />
             </div>
           </section>
         ) : (

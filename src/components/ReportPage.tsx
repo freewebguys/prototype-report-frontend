@@ -195,10 +195,10 @@ export const ReportPage = () => {
   const scoreWidth = useMemo(() => `${report.structuralViabilityScore}%`, [report.structuralViabilityScore])
 
   const getScoreTextColor = (score: number): string => {
-    if (score >= 80) return 'text-green-600'
-    if (score >= 60) return 'text-blue-600'
-    if (score >= 40) return 'text-yellow-600'
-    return 'text-red-600'
+    if (score >= 80) return 'text-[#11D1CB]'
+    if (score >= 60) return 'text-[#2663EB]'
+    if (score >= 40) return 'text-yellow-500'
+    return 'text-red-500'
   }
 
   const getRiskCardStyles = (severity: string): { bg: string; border: string; text: string; icon: string } => {
@@ -218,90 +218,132 @@ export const ReportPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB]">
+    <div className="min-h-screen bg-[#F8FAFC]">
       {/* Sticky Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-[#E5E7EB]">
-        <div className="max-w-6xl mx-auto px-6 py-4">
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <div className="text-xl font-semibold text-[#1F2328]">ArcSight</div>
-              <div className="hidden md:flex items-center gap-6">
-                <a href="#" className="text-sm font-medium text-[#1F2328] hover:text-[#3A7BFF] transition">Report</a>
-                <a href="#" className="text-sm font-medium text-[#6B7280] hover:text-[#1F2328] transition">Scan History</a>
-                <a href="#" className="text-sm font-medium text-[#6B7280] hover:text-[#1F2328] transition">Migration Map <span className="text-xs text-[#6B7280]">(Coming Soon)</span></a>
-                <a href="#" className="text-sm font-medium text-[#6B7280] hover:text-[#1F2328] transition">Settings</a>
+            <div className="flex items-center gap-10">
+              <div className="text-xl font-light tracking-tight text-[#1E293B]">ArcSight<span className="text-[#2663EB]">.ai</span></div>
+              <div className="hidden md:flex items-center gap-8">
+                <a href="#" className="text-sm font-light text-[#1E293B] hover:text-[#2663EB] transition-colors">Report</a>
+                <a href="#" className="text-sm font-light text-[#334155] hover:text-[#1E293B] transition-colors">Insights</a>
+                <a href="#" className="text-sm font-light text-[#334155] hover:text-[#1E293B] transition-colors">History</a>
+                <a href="#" className="text-sm font-light text-[#334155] hover:text-[#1E293B] transition-colors">Settings</a>
               </div>
             </div>
             <div className="flex items-center gap-4">
               {fileName && (
-                <span className="text-sm text-[#6B7280] hidden sm:inline" aria-live="polite">
+                <span className="text-sm text-[#334155] hidden sm:inline font-light" aria-live="polite">
                   {fileName}
                 </span>
               )}
-              <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                <span className="text-xs text-gray-600">U</span>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2663EB] to-[#11D1CB] flex items-center justify-center shadow-sm">
+                <span className="text-xs text-white font-light">U</span>
               </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto px-6 py-10 space-y-10 animate-fade-in">
+      <div className="max-w-7xl mx-auto px-6 py-16 space-y-16 animate-fade-in">
         {/* Hero Section */}
         {isPlaceholder ? (
-          <section className="text-center py-16">
-            <h1 className="text-2xl font-semibold text-[#1F2328] mb-4 max-w-2xl mx-auto">
-              Can your AI-built prototype survive real growth?
-            </h1>
-            <p className="text-[15px] text-[#6B7280] leading-relaxed mb-8 max-w-xl mx-auto">
-              ArcSight scans your architecture, detects structural weak points, and reveals whether your prototype can scale — or collapse.
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              <button
-                type="button"
-                className="bg-[#3A7BFF] text-white rounded-lg px-4 py-2 font-medium hover:bg-blue-600 transition"
-                onClick={handleUploadClick}
-              >
-                Run ArcSight Scan
-              </button>
-              <button
-                type="button"
-                className="border border-gray-300 bg-white text-gray-700 rounded-lg px-4 py-2 hover:bg-gray-50 transition"
-                onClick={handleUploadClick}
-              >
-                Try Sample Report
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="application/json"
-                onChange={handleFileChange}
-                className="hidden"
-              />
+          <section className="relative text-center py-20 overflow-hidden">
+            {/* Gradient Arc Background */}
+            <div className="absolute inset-0 flex items-center justify-center -z-10">
+              <div className="w-full max-w-4xl h-96 relative">
+                <svg className="w-full h-full" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M 0 300 Q 200 100 400 150 T 800 200"
+                    stroke="url(#gradient)"
+                    strokeWidth="2"
+                    fill="none"
+                    className="opacity-30"
+                  />
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#2663EB" />
+                      <stop offset="100%" stopColor="#11D1CB" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            
+            <div className="relative z-10">
+              <h1 className="text-4xl md:text-5xl font-light text-[#1E293B] mb-6 max-w-3xl mx-auto leading-tight">
+                See your survival arc — before investors do
+              </h1>
+              <p className="text-lg text-[#334155] font-light leading-relaxed mb-12 max-w-2xl mx-auto">
+                Clarity on your startup's future. Insight meets foresight for founders.
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  type="button"
+                  className="bg-gradient-to-r from-[#2663EB] to-[#11D1CB] text-white rounded-xl px-8 py-3 font-light text-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  onClick={handleUploadClick}
+                >
+                  Generate Report
+                </button>
+                <button
+                  type="button"
+                  className="border border-slate-300 bg-white text-[#334155] rounded-xl px-8 py-3 font-light text-sm hover:bg-slate-50 transition-all duration-300"
+                  onClick={handleUploadClick}
+                >
+                  Try Demo
+                </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="application/json"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </div>
+              
+              {/* Preview Placeholders */}
+              <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-6">
+                  <div className="text-xs uppercase tracking-wider text-[#334155] font-light mb-3">ArcScore™</div>
+                  <div className="text-3xl font-light text-[#1E293B] mb-2">—</div>
+                  <div className="text-sm text-[#334155] font-light">Structural viability</div>
+                </div>
+                <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-6">
+                  <div className="text-xs uppercase tracking-wider text-[#334155] font-light mb-3">RiskRadar™</div>
+                  <div className="text-3xl font-light text-[#1E293B] mb-2">—</div>
+                  <div className="text-sm text-[#334155] font-light">Risk dimensions</div>
+                </div>
+                <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-6">
+                  <div className="text-xs uppercase tracking-wider text-[#334155] font-light mb-3">MomentumMap™</div>
+                  <div className="text-3xl font-light text-[#1E293B] mb-2">—</div>
+                  <div className="text-sm text-[#334155] font-light">Trajectory trend</div>
+                </div>
+              </div>
             </div>
           </section>
         ) : (
-          <section className="bg-white rounded-xl shadow-sm p-6 md:p-8 hover:shadow-md transition-shadow">
-            <div className="flex flex-wrap justify-between items-start gap-4">
+          <section className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+            <div className="flex flex-wrap justify-between items-start gap-6">
               <div className="flex-1 max-w-prose">
-                <p className="text-xs uppercase tracking-wide text-[#6B7280] mb-1">Prototype Survival Report</p>
-                <h1 className="text-2xl font-semibold text-[#1F2328] mb-3 leading-tight">
-                  Your app works today — but it won't let you grow safely.
+                <p className="text-xs uppercase tracking-wider text-[#334155] font-light mb-2">ArcReport™</p>
+                <h1 className="text-3xl font-light text-[#1E293B] mb-4 leading-tight">
+                  Structural analysis complete
                 </h1>
-                <p className="text-[15px] text-[#6B7280] leading-relaxed">
-                  This is the moment where prototypes either evolve... or break.
+                <p className="text-base text-[#334155] font-light leading-relaxed mb-6">
+                  Based on your product architecture and structural patterns, your viability trajectory shows {report.structuralViabilityScore < 60 ? 'elevated risk' : report.structuralViabilityScore < 80 ? 'moderate stability' : 'strong foundation'}.
                 </p>
-                <p className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium shadow-sm mt-4">
-                  Structural Viability Score: {report.structuralViabilityScore}% — {report.stage}
-                </p>
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#2663EB]/10 to-[#11D1CB]/10 border border-[#2663EB]/20 text-[#1E293B] text-sm font-light">
+                  ArcScore™: {report.structuralViabilityScore}% — {report.stage}
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  className="bg-[#3A7BFF] text-white rounded-lg px-4 py-2 font-medium hover:bg-blue-600 transition"
+                  className="bg-gradient-to-r from-[#2663EB] to-[#11D1CB] text-white rounded-xl px-6 py-2.5 font-light text-sm hover:shadow-lg transition-all duration-300"
                   onClick={handleUploadClick}
                 >
-                  Upload JSON
+                  New Scan
                 </button>
                 <input
                   ref={fileInputRef}
@@ -316,62 +358,115 @@ export const ReportPage = () => {
         )}
 
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-300 rounded-md shadow-sm p-4 text-red-800" role="alert">
+          <div className="bg-red-50/80 backdrop-blur-sm border-l-4 border-red-400 rounded-xl shadow-md p-4 text-red-800 font-light" role="alert">
             {error}
           </div>
         )}
 
-        {/* 📊 Structural Snapshot */}
+        {/* ArcScore™ Component */}
         <section>
-          <h2 className="text-2xl font-semibold text-[#1F2328] mb-6">
-            Structural Snapshot
+          <h2 className="text-2xl font-light text-[#1E293B] mb-8">
+            ArcScore™
           </h2>
           
-          <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-baseline mb-3">
-              <p className="text-sm uppercase tracking-wide text-[#6B7280] mb-1">Structural Viability Score</p>
-              <div className={`text-4xl font-bold ${getScoreTextColor(report.structuralViabilityScore)}`}>
-                {report.structuralViabilityScore}%
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              {/* Circular Progress Ring */}
+              <div className="relative w-48 h-48 flex-shrink-0">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  {/* Background circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    fill="none"
+                    stroke="#E2E8F0"
+                    strokeWidth="8"
+                  />
+                  {/* Progress circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    fill="none"
+                    stroke="url(#scoreGradient)"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * Math.PI * 45}`}
+                    strokeDashoffset={`${2 * Math.PI * 45 * (1 - report.structuralViabilityScore / 100)}`}
+                    className="transition-all duration-1000 ease-out"
+                  />
+                  <defs>
+                    <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#2663EB" />
+                      <stop offset="100%" stopColor="#11D1CB" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className={`text-4xl font-light ${getScoreTextColor(report.structuralViabilityScore)}`}>
+                      {report.structuralViabilityScore}
+                    </div>
+                    <div className="text-xs text-[#334155] font-light uppercase tracking-wider mt-1">Score</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex-1">
+                <p className="text-sm uppercase tracking-wider text-[#334155] font-light mb-3">Structural Viability</p>
+                <p className="text-base text-[#334155] font-light leading-relaxed mb-4">
+                  {isPlaceholder
+                    ? 'Score will appear after you load a report.'
+                    : `Your architecture shows ${report.structuralViabilityScore >= 80 ? 'strong structural integrity' : report.structuralViabilityScore >= 60 ? 'moderate stability with room for improvement' : 'elevated structural risk'}. ${report.structuralViabilityScore >= 60 ? 'Foundation supports growth trajectory.' : 'Consider structural refactoring before scaling.'}`}
+                </p>
+                <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-[#2663EB] to-[#11D1CB] rounded-full transition-all duration-1000"
+                    style={{ width: scoreWidth }}
+                  />
+                </div>
               </div>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden mb-3">
-              <div
-                className="h-full bg-gradient-to-r from-[#3A7BFF] to-blue-600 rounded-full transition-all duration-500"
-                style={{ width: scoreWidth }}
-              />
-            </div>
-            <p className="text-[15px] text-[#6B7280] leading-relaxed">
-              {isPlaceholder
-                ? 'Score will appear after you load a report.'
-                : 'Higher scores mean your app can grow without breaking.'}
-            </p>
           </div>
 
           {!isPlaceholder && (
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow mt-6">
-              <h3 className="text-xl font-semibold text-[#1F2328] mb-4">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300 mt-8">
+              <h3 className="text-xl font-light text-[#1E293B] mb-6">
                 Feature Collapse Forecast
               </h3>
-              <div className="text-[15px] text-[#6B7280] leading-relaxed max-w-prose">
-                <p className="mb-4">
-                  If you try to add features like:
+              <div className="text-base text-[#334155] font-light leading-relaxed max-w-prose">
+                <p className="mb-6">
+                  Adding these features will increase structural risk:
                 </p>
-                <ul className="space-y-3 list-none pl-0">
-                  <li className="flex items-start">
-                    <strong className="font-semibold text-[#1F2328] mr-2">🔐 Authentication</strong>
-                    <span>→ duplicated logic and inconsistent access</span>
+                <ul className="space-y-4 list-none pl-0">
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#2663EB]">🔐</span>
+                    <div>
+                      <strong className="font-light text-[#1E293B]">Authentication</strong>
+                      <span className="text-[#334155]"> — Duplicated logic and inconsistent access patterns</span>
+                    </div>
                   </li>
-                  <li className="flex items-start">
-                    <strong className="font-semibold text-[#1F2328] mr-2">💳 Payments</strong>
-                    <span>→ fragile workflows and untrackable bugs</span>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#2663EB]">💳</span>
+                    <div>
+                      <strong className="font-light text-[#1E293B]">Payments</strong>
+                      <span className="text-[#334155]"> — Fragile workflows and untrackable bugs</span>
+                    </div>
                   </li>
-                  <li className="flex items-start">
-                    <strong className="font-semibold text-[#1F2328] mr-2">👥 Teams & roles</strong>
-                    <span>→ tightly coupled files and conflicts</span>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#2663EB]">👥</span>
+                    <div>
+                      <strong className="font-light text-[#1E293B]">Teams & roles</strong>
+                      <span className="text-[#334155]"> — Tightly coupled files and conflicts</span>
+                    </div>
                   </li>
-                  <li className="flex items-start">
-                    <strong className="font-semibold text-[#1F2328] mr-2">📊 Dashboards / workflows</strong>
-                    <span>→ high risk of structural failure</span>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#2663EB]">📊</span>
+                    <div>
+                      <strong className="font-light text-[#1E293B]">Dashboards / workflows</strong>
+                      <span className="text-[#334155]"> — High risk of structural failure</span>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -379,21 +474,21 @@ export const ReportPage = () => {
           )}
         </section>
 
-        {/* 🛑 Key Fragility Risks */}
+        {/* RiskRadar™ Section */}
         <section>
-          <h2 className="text-2xl font-semibold text-[#1F2328] mb-6">
-            Key Fragility Risks
+          <h2 className="text-2xl font-light text-[#1E293B] mb-8">
+            RiskRadar™
           </h2>
           
-          <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-sm uppercase tracking-wide text-[#6B7280]">Detected Risks</h3>
-              <span className="px-3 py-1 rounded-full bg-gray-200 text-[#1F2328] text-sm font-medium shadow-sm">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-sm uppercase tracking-wider text-[#334155] font-light">Detected Risks</h3>
+              <span className="px-4 py-1.5 rounded-full bg-slate-100 text-[#1E293B] text-sm font-light shadow-sm">
                 {report.risks.length} items
               </span>
             </div>
-            <p className="text-[15px] text-[#6B7280] leading-relaxed mb-6 max-w-prose">
-              These are areas that will make future features harder and riskier to build.
+            <p className="text-base text-[#334155] font-light leading-relaxed mb-8 max-w-prose">
+              Structural areas that increase complexity and risk for future feature development.
             </p>
             {report.risks.length === 0 ? (
               <p className="text-gray-500">No risks listed yet.</p>
@@ -412,7 +507,7 @@ export const ReportPage = () => {
                         <span>{translated.severity} — {translated.label}</span>
                       </div>
                       <div className="text-sm mb-2">
-                        <span className="font-mono text-sm bg-gray-100 text-[#3A7BFF] px-2 py-1 rounded cursor-pointer hover:bg-gray-200">
+                        <span className="font-mono text-sm bg-slate-100 text-[#2663EB] px-2 py-1 rounded cursor-pointer hover:bg-slate-200 transition-colors">
                           <a
                             href="#"
                             onClick={(evt) => evt.preventDefault()}
@@ -436,48 +531,51 @@ export const ReportPage = () => {
           </div>
         </section>
 
-        {/* 💥 What Will Break First */}
+        {/* MomentumMap™ Section */}
         {!isPlaceholder && (
           <section>
-            <h2 className="text-2xl font-semibold text-[#1F2328] mb-6">
-              What Will Break First
+            <h2 className="text-2xl font-light text-[#1E293B] mb-8">
+              MomentumMap™
             </h2>
             
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <div className="text-[15px] text-[#6B7280] leading-relaxed max-w-prose">
-                <p className="mb-4">
-                  Based on your current structure, these are the most likely breaking points:
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+              <div className="text-base text-[#334155] font-light leading-relaxed max-w-prose">
+                <p className="mb-6">
+                  Based on structural analysis, these areas show highest failure probability:
                 </p>
-                <ul className="space-y-3 list-none pl-0">
+                <ul className="space-y-4 list-none pl-0">
                   {report.risks.length > 0 ? (
                     report.risks.slice(0, 5).map((risk, index) => {
                       const translated = translateRisk(risk.type)
                       return (
-                        <li key={index} className="flex items-start">
-                          <strong className="font-semibold text-[#1F2328] mr-2">{translated.severity} {translated.label}</strong>
-                          <span className="text-sm">
-                            in <span className="font-mono text-sm bg-gray-100 text-[#3A7BFF] px-2 py-1 rounded cursor-pointer hover:bg-gray-200">{risk.filePath}</span> — {translated.message}
-                          </span>
+                        <li key={index} className="flex items-start gap-3">
+                          <span className="text-[#2663EB]">{translated.severity.includes('🔴') ? '🚨' : translated.severity.includes('🟠') ? '⚠️' : 'ℹ️'}</span>
+                          <div>
+                            <strong className="font-light text-[#1E293B]">{translated.label}</strong>
+                            <span className="text-sm text-[#334155]">
+                              {' '}in <span className="font-mono text-sm bg-slate-100 text-[#2663EB] px-2 py-1 rounded">{risk.filePath}</span> — {translated.message}
+                            </span>
+                          </div>
                         </li>
                       )
                     })
                   ) : (
                     <>
-                      <li className="flex items-start">
-                        <strong className="font-semibold text-[#1F2328] mr-2">🔐 Authentication</strong>
-                        <span>— duplicated logic and inconsistent access</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-[#2663EB]">🔐</span>
+                        <span className="text-[#334155]">Authentication — duplicated logic and inconsistent access</span>
                       </li>
-                      <li className="flex items-start">
-                        <strong className="font-semibold text-[#1F2328] mr-2">💳 Payments</strong>
-                        <span>— fragile workflows and untrackable bugs</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-[#2663EB]">💳</span>
+                        <span className="text-[#334155]">Payments — fragile workflows and untrackable bugs</span>
                       </li>
-                      <li className="flex items-start">
-                        <strong className="font-semibold text-[#1F2328] mr-2">👥 Teams & roles</strong>
-                        <span>— tightly coupled files and conflicts</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-[#2663EB]">👥</span>
+                        <span className="text-[#334155]">Teams & roles — tightly coupled files and conflicts</span>
                       </li>
-                      <li className="flex items-start">
-                        <strong className="font-semibold text-[#1F2328] mr-2">📊 Dashboards / workflows</strong>
-                        <span>— high risk of structural failure</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-[#2663EB]">📊</span>
+                        <span className="text-[#334155]">Dashboards / workflows — high risk of structural failure</span>
                       </li>
                     </>
                   )}
@@ -487,43 +585,43 @@ export const ReportPage = () => {
           </section>
         )}
 
-        {/* 🧭 Growth Stage — Where You Are */}
+        {/* Growth Stage Analysis */}
         {!isPlaceholder && (
           <section>
-            <h2 className="text-2xl font-semibold text-[#1F2328] mb-6">
-              Growth Stage — Where You Are
+            <h2 className="text-2xl font-light text-[#1E293B] mb-8">
+              Growth Stage Analysis
             </h2>
             
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <div className="flex gap-3 mt-4 flex-wrap">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+              <div className="flex gap-3 mb-6 flex-wrap">
                 {stageDefinitions.map((def, index) => {
                   const isCurrent = report.stage === 'Graduation Moment' || report.stage.includes('Graduation')
                   const isActive = (isCurrent && index === 1) || (!isCurrent && index === 0)
                   return (
                     <span
                       key={def.stage}
-                      className={`px-3 py-1 rounded-full text-sm font-medium shadow-sm ${
-                        index === 0 ? 'bg-green-100 text-green-700' :
-                        index === 1 ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-blue-100 text-blue-700'
-                      } ${isActive ? 'ring-2 ring-blue-500' : ''}`}
+                      className={`px-4 py-2 rounded-full text-sm font-light shadow-sm ${
+                        index === 0 ? 'bg-green-50 text-green-700 border border-green-200' :
+                        index === 1 ? 'bg-yellow-50 text-yellow-700 border border-yellow-200' :
+                        'bg-blue-50 text-blue-700 border border-blue-200'
+                      } ${isActive ? 'ring-2 ring-[#2663EB]' : ''}`}
                     >
                       {def.stage}
                     </span>
                   )
                 })}
               </div>
-              <div className="mt-6 space-y-3">
+              <div className="space-y-4 mb-6">
                 {stageDefinitions.map((def) => (
                   <div key={def.stage} className="flex items-start">
-                    <span className="font-medium text-[#1F2328] min-w-[200px]">{def.stage}</span>
-                    <span className="text-[15px] text-[#6B7280] leading-relaxed">{def.description}</span>
+                    <span className="font-light text-[#1E293B] min-w-[220px]">{def.stage}</span>
+                    <span className="text-base text-[#334155] font-light leading-relaxed">{def.description}</span>
                   </div>
                 ))}
               </div>
-              <p className="text-[15px] text-[#6B7280] leading-relaxed mt-4">
+              <p className="text-base text-[#334155] font-light leading-relaxed pt-4 border-t border-slate-200">
                 {report.stage === 'Graduation Moment' || report.stage.includes('Graduation') ? (
-                  <>🟡 Graduation Moment ← You are here</>
+                  <>Current position: Graduation Moment — structural transition required before scaling</>
                 ) : (
                   <>Current stage: {report.stage}</>
                 )}
@@ -532,58 +630,69 @@ export const ReportPage = () => {
           </section>
         )}
 
-        {/* 💡 Founder-Friendly Explanation */}
+        {/* Strategic Insights */}
         {!isPlaceholder && (
           <section>
-            <h2 className="text-2xl font-semibold text-[#1F2328] mb-6">
-              Founder-Friendly Explanation
+            <h2 className="text-2xl font-light text-[#1E293B] mb-8">
+              Strategic Insights
             </h2>
             
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <div className="text-[15px] text-[#6B7280] leading-relaxed max-w-prose space-y-3">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+              <div className="text-base text-[#334155] font-light leading-relaxed max-w-prose space-y-4">
                 <p>
-                  Your app looks like a product — but it's still built like a prototype.
+                  Your product architecture shows prototype-level structure — functional for initial development, but requiring structural evolution before scaling.
                 </p>
                 <p>
-                  In prototypes, UI, logic, and data all live in one layer. That's perfect for speed,
-                  but it becomes painful when adding real-world complexity.
+                  Prototype architecture consolidates UI, logic, and data in a single layer. This accelerates initial development but increases complexity risk when adding production features.
                 </p>
                 <p>
-                  This isn't a coding bug. It's a structure milestone.
+                  This is a structural milestone, not a defect. Transition planning is recommended before scaling operations.
                 </p>
               </div>
             </div>
           </section>
         )}
 
-        {/* 🚦 What To Do Next */}
+        {/* Recommendations */}
         <section>
-          <h2 className="text-2xl font-semibold text-[#1F2328] mb-6">
-            What To Do Next
+          <h2 className="text-2xl font-light text-[#1E293B] mb-8">
+            Recommendations
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <article className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="text-sm uppercase tracking-wide text-[#6B7280] mb-4">Summary</h3>
-              <div className="text-[15px] text-[#6B7280] leading-relaxed space-y-3 max-w-prose">
+            <article className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+              <h3 className="text-sm uppercase tracking-wider text-[#334155] font-light mb-6">Summary</h3>
+              <div className="text-base text-[#334155] font-light leading-relaxed space-y-4 max-w-prose">
                 {report.summary.split('\n').map((line, index) => (
                   <p key={index}>{line}</p>
                 ))}
               </div>
             </article>
-            <article className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="text-sm uppercase tracking-wide text-[#6B7280] mb-4">Recommendation</h3>
-              <div className="text-[15px] text-[#6B7280] leading-relaxed max-w-prose">
-                <p className="font-semibold text-[#1F2328] mb-3">
-                  Goal — Recommendation
+            <article className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 p-8 hover:shadow-lg transition-all duration-300">
+              <h3 className="text-sm uppercase tracking-wider text-[#334155] font-light mb-6">Action Plan</h3>
+              <div className="text-base text-[#334155] font-light leading-relaxed max-w-prose">
+                <p className="font-light text-[#1E293B] mb-4">
+                  Priority Actions by Goal
                 </p>
-                <ul className="space-y-2 list-none pl-0 mb-4">
-                  <li>✔ Demo or pitch → You can stay as you are</li>
-                  <li>⚠ Start building real features → Begin separating UI from logic</li>
-                  <li>🚨 Add payments, roles, workflows → Restructure before building</li>
-                  <li>🚨 Hire engineers or scale product → Create a stronger foundation now</li>
+                <ul className="space-y-3 list-none pl-0 mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#11D1CB]">✔</span>
+                    <span>Demo or pitch → Current structure sufficient</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">⚠</span>
+                    <span>Building production features → Begin UI/logic separation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500">🚨</span>
+                    <span>Adding payments, roles, workflows → Restructure first</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500">🚨</span>
+                    <span>Hiring engineers or scaling → Establish foundation now</span>
+                  </li>
                 </ul>
-                <p className="font-medium text-[#1F2328] mt-4">
+                <p className="font-light text-[#1E293B] mt-6 pt-6 border-t border-slate-200">
                   {report.recommendedNextStep.split('\n').map((line, index) => (
                     <span key={index}>
                       {line}
